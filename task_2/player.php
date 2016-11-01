@@ -145,7 +145,7 @@ print $message;
 print $foot;
 
 while (!$last_line) {
-    $next_line = fgets($fp, 1024); // read the special file to get the user input from keyboard
+    $next_line = fgets($fp, 1024);
 
     switch ($next_line) {
         case ".\n":
@@ -203,7 +203,6 @@ while (!$last_line) {
                         // display the game over message
                         $message = "# | * * * Game Over - Retreat * * * |\n# Current Player: <name_player> # \n# - <{$player->getName()}>";
                         $status = '';
-
                         print $head;
                         print $message;
                         print $foot;
@@ -214,6 +213,7 @@ while (!$last_line) {
                         print $battleMessage;
                     }
                 } else {
+                    // if status is not battle
                     $message = "# Current Player: <name_player> # \n# - <{$player->getName()}>";
 
                     print $head;
@@ -224,6 +224,7 @@ while (!$last_line) {
             break;
 
         default:
+            // if status is creating new player
             if ($status == 'new') {
                 $next_line = rtrim($next_line, "\n");
                 $player->setName($next_line);
