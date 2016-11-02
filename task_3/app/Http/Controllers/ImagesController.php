@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class ImagesController extends Controller
 {
@@ -45,8 +46,8 @@ class ImagesController extends Controller
         $file = $request->file('image');
         $filename = str_random(10) . '.jpg';
         $filepath = '/uploads/' . $filename;
-        Storage::disk('uploads')->put($filename, File::get($file));
-
+        $image = InterventionImage::make($file)->resize(200, 400)->encode('jpg');
+        Storage::disk('uploads')->put($filename, $image);
         $data = [
             'title' => $request->input('title'),
             'url' => $filepath,
@@ -55,6 +56,19 @@ class ImagesController extends Controller
         $this->image->create($data);
         Session::flash('notice', 'new images has been posted');
         return redirect()->route('images.index');
+
+        // [tanpa intervention]
+        // $filename = str_random(10) . '.jpg';
+        // $filepath = '/uploads/' . $filename;
+        // Storage::disk('uploads')->put($filename, File::get($file));
+        // $data = [
+        //     'title' => $request->input('title'),
+        //     'url' => $filepath,
+        //     'users_id' => Sentinel::getUser()['original']['id']
+        // ];
+        // $this->image->create($data);
+        // Session::flash('notice', 'new images has been posted');
+        // return redirect()->route('images.index');
     }
 
     public function edit($id)
@@ -68,6 +82,7 @@ class ImagesController extends Controller
         $file = $request->file('image');
         $filename = str_random(10) . '.jpg';
         $filepath = '/uploads/' . $filename;
+
         Storage::disk('uploads')->put($filename, File::get($file));
 
         $data = [
@@ -75,7 +90,12 @@ class ImagesController extends Controller
             'url' => $filepath,
             'users_id' => Sentinel::getUser()['original']['id']
         ];
-        $this->image->create($data);
+        $image = $this->image->find($id);
+        $image->title = $data['title'];
+        $image->url = $data['url'];
+        $image->users_id = $data['users_id'];
+        $image->save($data);
+
         Session::flash('notice', 'Image has been updated!');
         return redirect()->route('images.index');
     }
