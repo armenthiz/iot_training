@@ -7,7 +7,7 @@
                 <span class="icon-bar" />
                 <span class="icon-bar" />
             </button>
-            <a href="#" class="navbar-brand">Task4</a>
+            <a href="/" class="navbar-brand">Task4</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
