@@ -4,3 +4,5 @@
 /.idea
 Homestead.json
 Homestead.yaml
+
+!/vendor/cartalyst/sentinel/src/Users/EloquentUser.php
