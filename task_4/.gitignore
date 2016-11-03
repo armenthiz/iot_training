@@ -1,5 +1,5 @@
 !.gitignore
-!vendor/cartalyst/sentinel/src/Users/EloquentUser.php
+!/vendor/cartalyst/sentinel/src/Users/EloquentUser.php
 
 /node_modules
 /public/storage
