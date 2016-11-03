@@ -24,7 +24,7 @@ class ImageCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|between:0,200',
+            'image' => 'required|between:0,200|mimes:jpeg,bmp,png',
             'title' => 'required'
         ];
     }

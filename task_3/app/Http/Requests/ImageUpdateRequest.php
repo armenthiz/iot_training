@@ -24,7 +24,7 @@ class ImageUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required',
+            'image' => 'required|between:0,200|mimes:jpeg,bmp,png',
             'title' => 'required'
         ];
     }
