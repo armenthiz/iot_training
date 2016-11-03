@@ -1,0 +1,3 @@
+#!/bin/bash
+# copy fix
+cp ./eloquentuserfix/vendor/cartalyst/sentinel/src/Users/EloquentUser.php ./vendor/cartalyst/sentinel/src/Users/EloquentUser.php
