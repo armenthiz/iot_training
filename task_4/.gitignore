@@ -1,8 +1,9 @@
+!.gitignore
+!vendor/cartalyst/sentinel/src/Users/EloquentUser.php
+
 /node_modules
 /public/storage
 /vendor
 /.idea
 Homestead.json
 Homestead.yaml
-
-!/vendor/cartalyst/sentinel/src/Users/EloquentUser.php
