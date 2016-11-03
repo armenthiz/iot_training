@@ -40,7 +40,7 @@ class ArticlesController extends Controller
             if ($request->keywords) {
                 $articles = Article::where('users_id', $userId)
                     ->where('title', 'like', '%' . $request->keywords . '%')
-                    ->where('content', 'like', '%' . $request->keywords . '%')
+                    ->orWhere('content', 'like', '%' . $request->keywords . '%')
                     ->paginate(10);
             } elseif ($request->direction) {
                 $articles = Article::where('users_id', $userId)
