@@ -58,10 +58,16 @@
             </div>
         {!! Form::close() !!}
     </div>
+    <h2>Comment List</h2>
+    <br/>
     @foreach($comments as $comment)
-        <div style="outline: 1px solid #74AD1B;">
-            <p>{!! $comment->content !!}</p>
-            <p>{!! $comment->user !!}</p>
-        </div>
+    <blockquote>
+        <p>{!! $comment->content !!}</p>
+        <small>
+            <cite title="Source Title">
+                {!! $comment->user !!}
+            </cite>
+        </small>
+    </blockquote>
     @endforeach
 @stop
