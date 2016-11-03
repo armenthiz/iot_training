@@ -113,6 +113,7 @@ class ArticlesController extends Controller
 
         $this->article->title = $data['title'];
         $this->article->content = $data['content'];
+        $this->article->users_id = Sentinel::getUser()['original']['id'];
         $this->article->save();
 
         Session::flash('notice', 'Article success created');
