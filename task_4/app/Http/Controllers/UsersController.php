@@ -9,11 +9,17 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    /**
+     * controller to display the register form
+     */
     public function signup()
     {
         return view('users.signup');
     }
 
+    /**
+     * controller to registering new user, and auto activating
+     */
     public function signup_store(UserRequest $request)
     {
         // Below code will register and automatic activate account user

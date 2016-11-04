@@ -43,11 +43,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                          <label for="remember-me">
-                            Remember Me &nbsp;<input name="remember-me" type="checkbox">
-                          </label>
-                        </div>
-                        <div class="form-group">
                             <input type="submit" name="register" class="btn btn-raised btn-primary" value="Register" />
                             <a href="#"> Forgot password?</a>
                         </div>

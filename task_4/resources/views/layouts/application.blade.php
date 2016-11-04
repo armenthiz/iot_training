@@ -29,13 +29,19 @@
                 <div id="main-content" class="col-xs-12 col-sm-9 main pull right">
                     <div class="panel-body">
                         @if (Session::has('error'))
-                            <div class="session-flash alert-danger">
-                                {{ Session::get('error') }}
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>
+                                    {{ Session::get('error') }}
+                                </strong>
                             </div>
                         @endif
                         @if (Session::has('notice'))
-                            <div class="session-flash alert-info">
-                                {{ Session::get('notice') }}
+                            <div class="alert alert-dismissible alert-success">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>
+                                    {{ Session::get('notice') }}
+                                </strong>
                             </div>
                         @endif
                         @yield('content')

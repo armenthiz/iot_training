@@ -25,7 +25,7 @@ class ImageCreateRequest extends FormRequest
     {
         return [
             'image' => 'required|between:0,200|mimes:jpeg,bmp,png',
-            'title' => 'required'
+            'title' => 'required|max:255'
         ];
     }
 }

@@ -20,16 +20,10 @@ class AuthorizeSeeder extends Seeder
             ]
         ];
 
-        Sentinel::getRoleRepository()->createModel()->fill($role_admin)->save();
-        $adminrole = Sentinel::findRoleByName('Admin');
-        $user_admin = [
-            'first_name' => 'M',
-            'last_name' => 'Admin',
-            'email' => 'madmin@mail.com',
-            'password' => '12345678'
-        ];
-        $adminuser = Sentinel::registerAndActivate($user_admin);
-        $adminuser->roles()->attach($adminrole);
+        Sentinel::getRoleRepository()
+                ->createModel()
+                ->fill($role_admin)
+                ->save();
 
         // this for seed data writer
         $role_writer = [
@@ -37,24 +31,28 @@ class AuthorizeSeeder extends Seeder
             'name' => 'Writer',
             'permissions' => [
                 'articles.index' => true,
-                'articles.create' => true,
                 'articles.store' => true,
+                'articles.create' => true,
+                'articles.destroy' => true,
                 'articles.show' => true,
-                'articles.edit' => true,
                 'articles.update' => true,
+                'articles.edit' => true,
+                'comments.index' => true,
+                'comments.store' => true,
+                'comments.create' => true,
+                'comments.destroy' => true,
+                'comments.show' => true,
+                'comments.update' => true,
+                'comments.edit' => true,
+                'articles.storeExcel' => true,
+                'articles.showExportPdf' => true,
+                'articles.showExportExcel' => true,
             ]
         ];
 
-        Sentinel::getRoleRepository()->createModel()->fill($role_writer)->save();
-        $writerrole = Sentinel::findRoleByName('Writer');
-        $user_writer = [
-            'first_name' => 'Oda',
-            'last_name' => 'E',
-            'email' => 'oda@e.com',
-            'password' => '123456789'
-        ];      
-
-        $writeruser = Sentinel::registerAndActivate($user_writer);
-        $writeruser->roles()->attach($writerrole);
+        Sentinel::getRoleRepository()
+                ->createModel()
+                ->fill($role_writer)
+                ->save();
     }
 }

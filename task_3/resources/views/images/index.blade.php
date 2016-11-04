@@ -28,7 +28,7 @@
                                     <tr>
                                         <td>{{ $image->id }}</td>
                                         <td>
-                                            <img src='{{ $image->url }}' class="dashboard-images-thumb">
+                                            <img src='{{ $image->url_small }}' class="dashboard-images-thumb">
                                         </td>
                                         <td>
                                             {{ $image->title }}
@@ -40,6 +40,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="text-center">
+                            {!! $images->render() !!}
                         </div>
                     </div>
                 </div>

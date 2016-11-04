@@ -17,14 +17,13 @@ class RoleSentinelMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // Begin to get the current accessed route name
         $access = $request->route()->getName();
-        $user = Sentinel::getUser();
-        // $id = $user['original']['id'];
-        // $userId = Sentinel::findById($id);
 
-        if ($user->hasAccess($access)) {
+        // Begin checking
+        if (Sentinel::hasAccess($access)) {
             return $next($request);
-        } elseif ($user->hasAccess(['admin'])) {
+        } elseif (Sentinel::hasAccess(['admin'])) {
             return $next($request);
         } else {
             Session::flash('error', 'You dont have privilege');

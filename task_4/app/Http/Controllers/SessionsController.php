@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
+    /**
+     * controller to display the login form, and check if user is already
+     * logged in or not.
+     */
     public function login()
     {
         if ($user = Sentinel::check())
@@ -20,17 +24,42 @@ class SessionsController extends Controller
         }
     }
 
+    /**
+     * controller to setup the login
+     */
     public function login_store(SessionRequest $request)
     {
-        if ($user = Sentinel::authenticate(array(
-                'email' => $request->input('email'),
-                'password' => $request->input('password')
-            ))) {
-            Session::flash('notice', 'Welcome ' . $user->email);
-            return redirect()->intended('/');
+        // Determine if the `remember` checkbox is checked
+        if ($request->input('remember') != null) {
+
+            // then check if credentials are match
+            if ($user = Sentinel::authenticateAndRemember(array(
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password')
+                ))) {
+                // if match, return flash message and redirect to root
+                Session::flash('notice', 'Welcome ' . $user->email);
+                return redirect()->intended('/');
+            } else {
+                // if not match return flash message and redirect back to login
+                Session::flash('error', 'Login Fails');
+                return redirect()->route('login')->withInput();
+            }
         } else {
-            Session::flash('error', 'Login Fails');
-            return view('sessions.login');
+            // if `remember` checkbox is not checked then check if credentials
+            // are matched.
+            if ($user = Sentinel::authenticate(array(
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password')
+                ))) {
+                // If match, return flash message and redirect to root
+                Session::flash('notice', 'Welcome ' . $user->email);
+                return redirect()->intended('/');
+            } else {
+                // if not match return flash message and redirect back to login
+                Session::flash('error', 'Login Fails');
+                return redirect()->route('login')->withInput();
+            }
         }
     }
 

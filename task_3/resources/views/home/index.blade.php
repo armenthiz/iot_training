@@ -9,13 +9,13 @@
 					<li class="picture grid-item">
 						<a href="image/{{ $image->id }}">
 						<div class="picture-content">
-							<img class="picture-image" src="{{ $image->url }}" />
+							<img class="picture-image" src="{{ $image->url_small }}" />
 							<p class="picture-title">
 								{{ $image->title }}
 							</p>
 							<div class="picture-users">
 								<div class="col-md-2">
-									<img src="{{ $image->url }}">
+									<img src="{{ $image->url_small }}">
 								</div>
 								<div class="col-md-10">
 									{{ $image->users->first_name . ' ' . $image->users->last_name }}
@@ -26,5 +26,9 @@
 					</li>
 					@endforeach
 				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="text-center">
+				{!! $images->render() !!}
 			</div>
 @stop

@@ -16,7 +16,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $images = $this->image->all();
+        $images = $this->image->orderBy('updated_at', 'desc')
+                ->paginate(10);
         return view('home.index', ['images' => $images]);
     }
 

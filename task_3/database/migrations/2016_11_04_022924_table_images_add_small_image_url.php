@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UsersAddRoles extends Migration
+class TableImagesAddSmallImageUrl extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class UsersAddRoles extends Migration
      */
     public function up()
     {
-        // Schema::table('users', function (Blueprint $table) {
-            // $table->text('roles');
-        // });
+        Schema::table('images', function (Blueprint $table) {
+            $table->string('url_small');
+        });
     }
 
     /**
@@ -25,8 +25,8 @@ class UsersAddRoles extends Migration
      */
     public function down()
     {
-        // Schema::table('users', function (Blueprint $table) {
-            // $table->dropColumn('roles');
-        // });
+        Schema::table('images', function (Blueprint $table) {
+            $table->dropColumn('url_small');
+        });
     }
 }

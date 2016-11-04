@@ -12,15 +12,19 @@
                     </div>
                     <div class="col-md-9">
                         <div class="dashboard-images-show box">
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <img src="{{ $image->url }}" class="dashboard-images-show-thumb" />
                             </div>
-                            <div class="col-md-8">
-                                <p>Title: </p>
-                                <p class="dashboard-show-text">
-                                    {{ $image->title }}
-                                </p>
-                                {!! link_to(route('home.index'), 'Back', ['class' => 'btn btn-raised btn-info']) !!}
+                            <div class="col-md-12">
+                                <br />
+                                <blockquote class="pull-left">
+                                    <p>{{ $image->title }}</p>
+                                    <small>
+                                        <cite title="Source Title">
+                                            {!! link_to(route('home.index'), 'Back to home') !!}
+                                        </cite>
+                                    </small>
+                                </blockquote>
                             </div>
                             <div class="clear"></div>
                         </div>

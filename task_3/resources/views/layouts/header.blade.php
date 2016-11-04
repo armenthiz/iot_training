@@ -22,7 +22,6 @@
                     list-style: none;
                 }
                     .content ul.recent-pictures li.picture {
-
                     }
                         .content ul.recent-pictures li.picture .picture-content {
                             background: #fafafa;
@@ -83,7 +82,6 @@
                             padding:20px 0;
                         }
                             .content .dashboard-images-show img.dashboard-images-show-thumb {
-                                width: 100%;
                             }
                         .content .dashboard-images-edit {
                             padding:20px;
@@ -106,7 +104,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="javascript:void(0)">Imagist</a>
+                  <a class="navbar-brand" href="/">Imagist</a>
                 </div>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                   <ul class="nav navbar-nav navbar-right">
@@ -124,12 +122,18 @@
             </div>
             <div class="content container">
                 @if (Session::has('error'))
-                    <div class="session-flash alert-danger">
-                        {{ Session::get('error') }}
+                    <div class="alert alert-dismissible alert-danger">
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                      <strong>
+                          {{ Session::get('error') }}
+                      </strong>
                     </div>
                 @endif
                 @if (Session::has('notice'))
-                    <div class="session-flash alert-info">
-                        {{ Session::get('notice') }}
+                    <div class="alert alert-dismissible alert-success">
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                      <strong>
+                          {{ Session::get('notice') }}
+                      </strong>
                     </div>
                 @endif
