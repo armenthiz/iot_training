@@ -35,7 +35,9 @@ class ImagesController extends Controller
         $currentUserId = Sentinel::getUser()['original']['id']; 
 
         // Get the images based on id's
-        $images = $this->image->where('users_id', $currentUserId)->paginate(5);
+        $images = $this->image->where('users_id', $currentUserId)
+                        ->orderBy('updated_at', 'desc')
+                        ->paginate(5);
 
         // return response
         return view('images.index', ['images' => $images]);

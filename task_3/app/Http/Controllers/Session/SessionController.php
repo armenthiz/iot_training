@@ -11,10 +11,16 @@ use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    public function login ()
+    /**
+     * controller that used to view the login form, and check if user is
+     * already logged in or not.
+     */
+    public function login()
     {
+        // check if user is logged in
         if ($user = Sentinel::check())
         {
+            // return flash message with redirect response
             Session::flash('notice', 'You has login,' . $user->email);
             return redirect('/');
         } else {
@@ -22,34 +28,44 @@ class SessionController extends Controller
         }
     }
 
-    public function login_store (LoginRequest $request)
+    /**
+     * controller to setup the login
+     */
+    public function login_store(LoginRequest $request)
     {
-        if ($user = Sentinel::authenticate($request->all())) {
-            Session::flash('notice', 'Welcome ' . $user->email);
-            return redirect()->intended('/');
+        // check if input is remember checkbox is checked
+        if ($request->input('remember') != null)
+        {
+            // if checked then check if credentials is matched
+            if ($user = Sentinel::authenticateAndRemember($request->all()))
+            {
+                Session::flash('notice', 'Welcome ' . $user->email);
+                return redirect()->intended('/');
+            } else {
+                Session::flash('error', 'Login fails');
+                return redirect()->back()->withInput();
+            }
         } else {
-            Session::flash('error', 'Login fails');
-            return redirect()->back()->withInput();
+            // if remember checkbox is not checked, then check if credentials
+            // is matched
+            if ($user = Sentinel::authenticate($request->all()))
+            {
+                Session::flash('notice', 'Welcome ' . $user->email);
+                return redirect()->intended('/');
+            } else {
+                Session::flash('error', 'Login fails');
+                return redirect()->back()->withInput();
+            }
         }
     }
 
+    /**
+     * controller to action logout
+     */
     public function logout()
     {
         Sentinel::logout();
         Session::flash('notice', 'Logout success');
         return redirect('/');
-    }
-
-    public function register ()
-    {
-        return view('session.register');
-    }
-
-    public function register_store (RegisterRequest $request)
-    {
-        // Register and Automatically activate the account
-        Sentinel::register($request->all(), true);
-        Session::flash('notice', 'Successfully created new user');
-        return redirect()->route('home.index');
     }
 }

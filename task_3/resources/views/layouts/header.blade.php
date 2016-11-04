@@ -114,7 +114,7 @@
                         <li>{!! link_to(route('session.logout'), 'Logout') !!}</li>
                     @else
                         <li>{!! link_to(route('session.login'), 'Login') !!}</li>
-                        <li>{!! link_to(route('session.register'), 'Register') !!}</li>
+                        <li>{!! link_to(route('user.register'), 'Register') !!}</li>
                     @endif
                   </ul>
                 </div>

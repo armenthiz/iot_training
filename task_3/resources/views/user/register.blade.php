@@ -5,7 +5,7 @@
                     Register Here
                 </h2>
                 <div class="register center-block" style="width:400px;">
-                    {!! Form::open(['route' => 'session.register_store', 'role' => 'form']) !!}
+                    {!! Form::open(['route' => 'user.register_store', 'role' => 'form']) !!}
                         <div class="form-group">
                             {!! Form::label('first_name', 'First Name', []) !!}
                             {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'Your First Name ..']) !!}

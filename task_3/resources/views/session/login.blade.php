@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <input type="submit" name="login" class="btn btn-raised btn-primary" value="Login" />
                             or
-                            <a href="#"> Forgot password?</a>
+                            {!! link_to(route('reminders.create'), 'Forgot Password?') !!}
                         </div>
                     {!! Form::close() !!}
                 </div>

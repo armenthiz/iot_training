@@ -24,6 +24,8 @@ class UsersController extends Controller
     {
         // Below code will register and automatic activate account user
         $user = Sentinel::registerAndActivate($request->all());
+
+        // Automatically add permissions into registered users
         $user->permissions = [
             'articles.index' => true,
             'articles.store' => true,
@@ -45,7 +47,8 @@ class UsersController extends Controller
         ];
         $user->save();
 
+        // Then return flash message and redirect back
         Session::flash('notice', 'Success create new user');
-        return redirect()->back();
+        return redirect()->route('root');
     }
 }
